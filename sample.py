@@ -31,3 +31,7 @@ grad_w1 = learning_rate * current_grad_w1 + momentum *self.prev_delta_weight[0]
 #update previous delta_weights
 self.prev_delta_weight[0] = grad_w1
 self.prev_delta_weight[1] = grad_w2
+
+#update weights 
+self.weight[1] -=  grad_w2
+self.weight[0] -=  grad_w1
