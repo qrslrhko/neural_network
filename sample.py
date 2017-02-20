@@ -23,8 +23,7 @@ import sklearn.linear_model
 			ans.backward(set_train_x[j],set_train_y[j],learning_rate,momentum,reg)
 		# evaluate test sample
 		many = ans.testing(test_x)
-		count_accuracy = 0
-			
+		count_accuracy = 0			
 		count_accuracy = np.sum(many == test_y.T)
 		test_acc_rate = count_accuracy / 2000
 		test_accuracy = test_acc_rate
@@ -32,8 +31,7 @@ import sklearn.linear_model
 
 		# evaluate training sample
 		many = ans.testing(train_x)
-		count_accuracy = 0
-			
+		count_accuracy = 0			
 		count_accuracy = np.sum(many == train_y.T)
 		train_acc_rate = count_accuracy / 10000
 		train_accuracy = train_acc_rate
