@@ -16,18 +16,39 @@ import sklearn.linear_model
 # 
 
 
-train_x = data['train_data']
-train_y = data['train_labels']
-test_x = data['test_data']
-test_y = data['test_labels']
-	
-num_examples, input_dims = train_x.shape
-num_tests, test_dims = test_x.shape
-input_size = train_x.shape[1]
 
-para_list = (input_size,num_hidden,output_size)
-ans = LinearTransform(para_list,num_hidden)
+	for i in range(0, num_epochs):
 
-## several processes ............ ## 
-##................................##
-ans.backward(set_train_x[j],set_train_y[j],learning_rate,momentum,reg)
+		for j in range(0,10):
+			ans.backward(set_train_x[j],set_train_y[j],learning_rate,momentum,reg)
+		# evaluate test sample
+		many = ans.testing(test_x)
+		count_accuracy = 0
+			
+		count_accuracy = np.sum(many == test_y.T)
+		test_acc_rate = count_accuracy / 2000
+		test_accuracy = test_acc_rate
+		test_loss = len(test_y.T)- test_accuracy
+
+		# evaluate training sample
+		many = ans.testing(train_x)
+		count_accuracy = 0
+			
+		count_accuracy = np.sum(many == train_y.T)
+		train_acc_rate = count_accuracy / 10000
+		train_accuracy = train_acc_rate
+		train_loss = len(train_y.T)- train_accuracy
+
+		print()
+		print('    Train Loss: {:.3f}    Train Acc.: {:.2f}%'.format(
+			train_loss,
+			100. * train_accuracy,
+		))
+		print('    Test Loss:  {:.3f}    Test Acc.:  {:.2f}%'.format(
+			test_loss,
+			100. * test_accuracy,
+		))
+		
+		
+		
+		
